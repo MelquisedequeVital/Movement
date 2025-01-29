@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Muscular</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="../tema.js"></script>
     <link rel="stylesheet" href="style.css">
     
 </head>
 <body class="bg-white text-lg-black">
-    <header class="py-4 border-b border-gray-300 flex flex-col justify-between items-center gap-5 md:flex-row">
-        <img src="/assets/logo.png">
-        <button id="menu-toggle" class="text-3xl">☰</button>
+    <header class="py-4 border-b flex items-center justify-between px-4">
+        <img id="logo" src="/assets/logo-light.png" alt="Logo do site" class="h-12">        <button id="theme-toggle" class="bg-black text-white px-4 py-2 rounded">
+            Alternar Tema
+        </button>
+        <button id="menu-toggle" class="text-lg-2xl">☰</button>
     </header>
 
     <nav id="mobile-menu" class="hidden bg-gray-100 border-b border-gray-300">
