@@ -9,7 +9,7 @@ function addInteractivity(svgObject){
 
             //add redirection
             svgElement.addEventListener('click' ,() => {
-                window.location.href = `pages/${svgElement.id}.html`
+                window.location.href = `#${svgElement.id}`
             } )
 
             //add hoverand muscle name

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../style.css">
+    <title>Front-Body</title>
+</head>
+<body class="w-full">
+
+    <header class="py-4 border-b border-black flex flex-col justify-between items-center gap-5 md:flex-row">
+        <img src="/assets/logo.png">
+        <button id="menu-toggle" class="text-3xl">☰</button>
+    </header>
+
+    <nav id="mobile-menu" class="hidden bg-gray-100 border-b border-gray-300">
+        <ul class="flex flex-col">
+            <li><a href="../index.html" class="py-2 px-4 block text-lg-sm font-medium hover:bg-gray-200">HOME</a></li>
+            <li><a href="front-body.html" class="py-2 px-4 block text-lg-sm font-medium hover:bg-gray-200">Corpo: Parte Frontal</a></li>
+            <li><a href="back-body.html" class="py-2 px-4 block text-lg-sm font-medium hover:bg-gray-200">Corpo: Parte Posterior</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="flex flex-col justify-center">
+            <h1 class="flex justify-center text-3xl font-bold mb-5 mt-20">Região Frontal</h1>
+            <hr class="w-[90%] mx-auto border-t border-black">
+            <object class="w-screen h-screen" id="svg-front" class="svg" data="../assets/front-body.svg" type="image/svg+xml"></object>
+        </section>
+
+        <section id="chest" class="mb-12 border-t border-gray-300 pt-4">
+            <h2 class="text-lg font-semibold flex items-center cursor-pointer toggle-section">
+                Peito
+            </h2>
+            <div>
+                <p class="text-lg mb-3">Os músculos peitorais são importantes para movimentos de empurrar e estabilidade do tórax. Eles incluem o peitoral maior e menor, que ajudam na flexão e adução dos ombros.</p>
+                <img src="peito-exercise.png" alt="Exercício de Flexão de Braços" class="w-full mb-4">
+                <p class="mb-5 text-lg"><strong>Exercício:</strong> Flexões de braço ajudam a fortalecer os músculos do peito. Mantenha o corpo reto e abaixe-se até que o peito quase toque o chão.</p>
+            </div>
+        </section>
+        
+        <section id="abdome" class="mb-12 border-t border-gray-300 pt-4">
+            <h2 class="text-lg font-semibold flex items-center cursor-pointer toggle-section">
+                Abdome
+            </h2>
+            <div>
+                <p class="text-lg mb-3">Os músculos abdominais são fundamentais para a estabilidade do core e da postura. Eles incluem o reto abdominal, os oblíquos e o transverso do abdome.</p>
+                <img src="abdome-exercise.png" alt="Exercício de Prancha" class="w-full mb-4">
+                <p class="mb-5 text-lg"><strong>Exercício:</strong> Pranchas trabalham o core inteiro. Mantenha uma linha reta da cabeça aos calcanhares e evite deixar o quadril ceder.</p>
+            </div>
+        </section>
+        
+        <section id="front-leg" class="mb-12 border-t border-gray-300 pt-4">
+            <h2 class="text-lg font-semibold flex items-center cursor-pointer toggle-section">
+                Coxa Frontal
+            </h2>
+            <div>
+                <p class="text-lg mb-3">Os quadríceps estão localizados na parte frontal da coxa e são responsáveis pela extensão das pernas e estabilização dos joelhos.</p>
+                <img src="front-leg-exercise.png" alt="Exercício de Agachamento" class="w-full mb-4">
+                <p class="mb-5 text-lg"><strong>Exercício:</strong> Agachamentos fortalecem os quadríceps e glúteos. Certifique-se de manter os joelhos atrás dos dedos dos pés e as costas retas.</p>
+            </div>
+        </section>
+        
+        <section id="biceps" class="mb-12 border-t border-gray-300 pt-4">
+            <h2 class="text-lg font-semibold flex items-center cursor-pointer toggle-section">
+                Bíceps
+            </h2>
+            <div>
+                <p class="text-lg mb-3">Os bíceps são responsáveis pela flexão do cotovelo e rotação do antebraço. Eles são essenciais para movimentos de puxar e levantar.</p>
+                <img src="biceps-exercise.png" alt="Exercício de Rosca Direta" class="w-full mb-4">
+                <p class="mb-5 text-lg"><strong>Exercício:</strong> A rosca direta isola os bíceps. Use movimentos controlados e evite balançar os pesos para melhores resultados.</p>
+            </div>
+        </section>
+    </main>
+    
+    
+    <script src="../svg.js"></script>
+    <script src="../menu.js"></script>
+</body>
+</html>

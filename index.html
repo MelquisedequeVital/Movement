@@ -1,19 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <title>Document</title>
-</head>
-<body class="w-full">
-    <div class="flex flex-col justify-center md:flex-row md:scale-85 md:justify-around">
-        <object id="svg-front" class="svg" data="assets/front-body.svg" type="image/svg+xml"></object>
-        <object id="svg-back" class="svg" data="assets/back-body.svg" type="image/svg+xml"></object>
-    </div>
+    <title>Sistema Muscular</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
     
+</head>
+<body class="bg-white text-lg-black">
+    <header class="py-4 border-b border-gray-300 flex flex-col justify-between items-center gap-5 md:flex-row">
+        <img src="/assets/logo.png">
+        <button id="menu-toggle" class="text-3xl">☰</button>
+    </header>
 
-    <script src="script.js"></script>
+    <nav id="mobile-menu" class="hidden bg-gray-100 border-b border-gray-300">
+        <ul class="flex flex-col">
+            <li><a href="index.html" class="py-2 px-4 block text-lg-sm font-medium hover:bg-gray-200">HOME</a></li>
+            <li><a href="pages/front-body.html" class="py-2 px-4 block text-lg-sm font-medium hover:bg-gray-200">Corpo: Parte Frontal</a></li>
+            <li><a href="pages/back-body.html" class="py-2 px-4 block text-lg-sm font-medium hover:bg-gray-200">Corpo: Parte Posterior</a></li>
+        </ul>
+    </nav>
 
+    <main class="max-w-3xl mx-auto py-6 px-6">
+        <section id="muscular-system" class="mb-8">
+            <h2 class="text-3xl font-semibold mb-2 flex items-center justify-center cursor-pointer toggle-section">
+                Os Músculos e o Movimento do Corpo
+            </h2>
+            <div>
+                <img src="assets/muscular-system-overview.png" alt="Ilustração do Sistema Muscular" class="w-full mb-4">
+                <p class="font-bold mb-3">O que são os músculos?</p>
+                <p class="text-lg mb-5">
+                    Os músculos são estruturas fundamentais para o funcionamento do corpo humano, permitindo o movimento, garantindo a estabilidade e desempenhando funções essenciais para a sobrevivência. O corpo possui mais de 600 músculos, que trabalham de forma coordenada para possibilitar desde ações simples, como piscar os olhos, até movimentos complexos, como correr ou levantar peso.
+                </p>
+                <ul class="list-disc list-inside mb-5 text-lg">
+                    <li><strong>Músculos esqueléticos:</strong> Ligados aos ossos por meio de tendões, são responsáveis pelos movimentos voluntários, como caminhar, segurar objetos e praticar esportes.</li>
+                    <li><strong>Músculos lisos:</strong> Encontrados em órgãos como estômago, intestino e vasos sanguíneos, realizam movimentos involuntários fundamentais para funções como a digestão e a circulação.</li>
+                    <li><strong>Músculo cardíaco:</strong> Presente exclusivamente no coração, trabalha continuamente para bombear sangue pelo corpo, garantindo o transporte de oxigênio e nutrientes.</li>
+                </ul>
+                <p class="text-lg mb-5">
+                    O movimento ocorre por meio da contração muscular, um processo em que os músculos encurtam e exercem força sobre os ossos. Isso acontece graças a interações entre proteínas dentro das fibras musculares e impulsos elétricos transmitidos pelos nervos.
+                </p>
+                <p class="text-lg mb-5">
+                    Além de permitir o movimento, os músculos desempenham outras funções essenciais:
+                </p>
+                <ul class="list-disc list-inside mb-5 text-lg">
+                    <li><strong>Postura e equilíbrio:</strong> Os músculos ajustam constantemente sua contração para manter o corpo alinhado e evitar quedas.</li>
+                    <li><strong>Produção de calor:</strong> Durante a contração, os músculos geram calor, ajudando a regular a temperatura corporal.</li>
+                    <li><strong>Proteção de órgãos:</strong> Alguns músculos formam uma camada de proteção ao redor de órgãos vitais, como os músculos abdominais protegendo órgãos internos.</li>
+                </ul>
+                <p class="text-lg mb-5">
+                    Com o envelhecimento, os músculos podem perder força e massa, um processo chamado sarcopenia. Para manter a saúde muscular, é essencial praticar exercícios físicos regularmente, manter uma alimentação equilibrada e evitar o sedentarismo.
+                </p>
+                <p class="text-lg">
+                    <strong>Curiosidade:</strong> O maior músculo do corpo humano é o glúteo máximo, essencial para movimentos como levantar-se e subir escadas, enquanto o menor é o músculo estribo, localizado no ouvido médio e responsável por transmitir vibrações sonoras.
+                </p>
+            </div>
+        </section>
+        <h3 class="flex justify-center text-3xl font-semibold mb-20 ">Regiões do corpo</h3>
+        <section class="flex flex-col justify-center w-full gap-20 md:flex-row">
+            <a class="flex flex-col items-center group" href="pages/front-body.html">
+                <p class="text-lg font-semibold transition-colors duration-500 ease-out group-hover:text-blue-500 group-hover:-translate-y-6">Região Frontal</p>
+                <img src="assets/front-body.jpg" alt="" class="transition-transform duration-300 group-hover:scale-110">
+            </a>
+            <a class="flex flex-col items-center group" href="pages/back-body.html">
+                <p class="text-lg font-semibold transition-colors duration-500 ease-out group-hover:text-blue-500 group-hover:-translate-y-6">Região Posterior</p>
+                <img src="assets/back-body.jpg" alt="" class="transition-transform duration-300 group-hover:scale-110">
+            </a>
+        </section>
+        
+    </main>
+    
+        
+
+        
+    </main>
+
+    <script src="menu.js"></script>
 </body>
 </html>
