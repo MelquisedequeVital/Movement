@@ -7,4 +7,26 @@ body {
 
  }
 
- 
+ /* Tema claro */
+body.light {
+    background-color: white;
+    color: black;
+}
+body.light #mobile-menu {
+    background-color: #f3f4f6;
+    color: black;
+}
+
+/* Tema escuro */
+body.dark {
+    background-color: #000000;
+    color: white;
+}
+body.dark #mobile-menu {
+    background-color: #1f2937;
+    color: white;
+}
+
+
+
+

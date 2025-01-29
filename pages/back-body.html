@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../style.css">
+    <script defer src="../tema.js"></script>
     <title>Back-body</title>
 </head>
-<body>
-    <header class="py-4 border-b border-black flex flex-col justify-between items-center gap-5 md:flex-row">
-        <img src="/assets/logo.png">
-        <button id="menu-toggle" class="text-3xl">☰</button>
+<body class="bg-white text-lg-black">
+    <header class="py-4 border-b flex items-center justify-between px-4">
+        <img id="logo" src="/assets/logo-light.png" alt="Logo do site" class="h-12">        <button id="theme-toggle" class="bg-black text-white px-4 py-2 rounded">
+            Alternar Tema
+        </button>
+        <button id="menu-toggle" class="text-lg-2xl">☰</button>
     </header>
 
     <nav id="mobile-menu" class="hidden bg-gray-100 border-b border-gray-300">
@@ -21,15 +24,15 @@
         </ul>
     </nav>
 
-    <main>
+    <main class="max-w-3xl mx-auto py-6 px-6">
         <section class="flex flex-col justify-center">
-            <h1 class="flex justify-center text-3xl font-bold mb-5 mt-20">Região Frontal</h1>
-            <hr class="w-[90%] mx-auto border-t border-black">
-            <object class="w-screen h-screen" id="svg-front" class="svg" data="../assets/back-body.svg" type="image/svg+xml"></object>
+            <h1 class="flex justify-center text-3xl font-bold mb-5 mt-20">Região Posterior</h1>
+            <hr class="w-[90%] mx-auto border-t">
+            <object class="h-screen" id="svg-front" class="svg" data="../assets/back-body.svg" type="image/svg+xml"></object>
         </section>
 
         <section id="chest" class="mb-12 border-t border-gray-300 pt-4">
-            <h2 class="text-lg font-semibold flex items-center cursor-pointer toggle-section">
+            <h2 class="text-lg-2xl font-semibold flex items-center cursor-pointer toggle-section">
                 Peito
             </h2>
             <div>
@@ -40,7 +43,7 @@
         </section>
         
         <section id="abdome" class="mb-12 border-t border-gray-300 pt-4">
-            <h2 class="text-lg font-semibold flex items-center cursor-pointer toggle-section">
+            <h2 class="text-lg-2xl font-semibold flex items-center cursor-pointer toggle-section">
                 Abdome
             </h2>
             <div>
@@ -51,7 +54,7 @@
         </section>
         
         <section id="front-leg" class="mb-12 border-t border-gray-300 pt-4">
-            <h2 class="text-lg font-semibold flex items-center cursor-pointer toggle-section">
+            <h2 class="text-lg-2xl font-semibold flex items-center cursor-pointer toggle-section">
                 Coxa Frontal
             </h2>
             <div>
@@ -62,7 +65,7 @@
         </section>
         
         <section id="biceps" class="mb-12 border-t border-gray-300 pt-4">
-            <h2 class="text-lg font-semibold flex items-center cursor-pointer toggle-section">
+            <h2 class="text-lg-2xl font-semibold flex items-center cursor-pointer toggle-section">
                 Bíceps
             </h2>
             <div>
