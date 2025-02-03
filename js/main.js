@@ -1,4 +1,5 @@
 import { toggleTheme, applySavedTheme } from './tema.js';
+import {Menu} from "./menu.js"
 
 document.addEventListener('DOMContentLoaded', () => {
     applySavedTheme();
@@ -8,3 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggleButton.addEventListener('click', toggleTheme);
     }
 });
+
+Menu()
+

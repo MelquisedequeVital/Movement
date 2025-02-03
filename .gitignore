@@ -1,0 +1,14 @@
+# Ignorar node_modules
+node_modules/
+
+# Ignorar arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos de build do Vite
+/dist
+.vite
+
+# Ignorar logs e caches
+npm-debug.log
+yarn-error.log
