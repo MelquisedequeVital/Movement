@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="style.css">
     
 </head>
-<body class="bg-white text-lg-black">
-    <header class="py-4 border-b flex items-center justify-between px-4">
-        <img id="logo" src="/assets/logo-light.png" alt="Logo do site" class="h-12">        <button id="theme-toggle" class="bg-black text-white px-4 py-2 rounded">
+<body class="bg-white  text-lg-black">
+    <header class="py-4 border-b flex flex-col gap-4 items-center justify-between px-4 md:flex-row">
+        <img id="logo" src="assets/logo-light.png" alt="Logo do site" class="h-12">        
+        <button id="theme-toggle" class="bg-black text-white px-4 py-2 rounded">
             Alternar Tema
         </button>
         <button id="menu-toggle" class="text-lg-2xl">☰</button>
@@ -20,8 +21,8 @@
     <nav id="mobile-menu" class="hidden bg-gray-100 border-b border-gray-300">
         <ul class="flex flex-col">
             <li><a href="index.html" class="py-2 px-4 block text-lg-sm font-medium hover:bg-gray-200">HOME</a></li>
-            <li><a href="pages/front-body.html" class="py-2 px-4 block text-lg-sm font-medium hover:bg-gray-200">Corpo: Parte Frontal</a></li>
-            <li><a href="pages/back-body.html" class="py-2 px-4 block text-lg-sm font-medium hover:bg-gray-200">Corpo: Parte Posterior</a></li>
+            <li><a href="front-body.html" class="py-2 px-4 block text-lg-sm font-medium hover:bg-gray-200">Corpo: Parte Frontal</a></li>
+            <li><a href="back-body.html" class="py-2 px-4 block text-lg-sm font-medium hover:bg-gray-200">Corpo: Parte Posterior</a></li>
         </ul>
     </nav>
 
@@ -62,11 +63,11 @@
         </section>
         <h3 class="flex justify-center text-3xl font-semibold mb-20 ">Regiões do corpo</h3>
         <section class="flex flex-col justify-center w-full gap-20 md:flex-row">
-            <a class="flex flex-col items-center group" href="pages/front-body.html">
+            <a class="flex flex-col items-center group" href="front-body.html">
                 <p class="text-lg font-semibold transition-colors duration-500 ease-out group-hover:text-blue-500 group-hover:-translate-y-6">Região Frontal</p>
                 <img src="assets/front-body.jpg" alt="" class="transition-transform duration-300 group-hover:scale-110">
             </a>
-            <a class="flex flex-col items-center group" href="pages/back-body.html">
+            <a class="flex flex-col items-center group" href="back-body.html">
                 <p class="text-lg font-semibold transition-colors duration-500 ease-out group-hover:text-blue-500 group-hover:-translate-y-6">Região Posterior</p>
                 <img src="assets/back-body.jpg" alt="" class="transition-transform duration-300 group-hover:scale-110">
             </a>

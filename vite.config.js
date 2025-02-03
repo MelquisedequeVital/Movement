@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: "/Movement",
+  base: "",
   server: {
     port: 3000,
   },
