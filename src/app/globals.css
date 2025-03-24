@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* style.css */
+
+/* Estilo para o tema claro (padrão) */
+body {
+  background-color: white;
+  color: black;
+}
+
+/* Estilo para o tema escuro */
+body.dark {
+  background-color: black;
+  color: white;
+}
+
+button {
+  background-color: black;
+  color: white;
+}
+
+/* Adiciona outras customizações para o tema escuro */
+button.dark {
+  background-color: white;
+  color: black;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+}
