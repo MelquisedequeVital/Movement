@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../style.css">
+    <title>Back-body</title>
+</head>
+<body class="bg-white text-lg-black">
+    <header class="py-4 border-b flex flex-col gap-4 items-center justify-between px-4 md:flex-row">
+        <img id="logo" src="/assets/logo-light.png" alt="Logo do site" class="h-12">        <button id="theme-toggle" class="bg-black text-white px-4 py-2 rounded">
+            Alternar Tema
+        </button>
+        <button id="menu-toggle" class="text-lg-2xl">☰</button>
+    </header>
+    <script type="module" src="/js/main.js"></script>
+
+    <nav id="mobile-menu" class="hidden bg-gray-100 border-b border-gray-300">
+        <ul class="flex flex-col">
+            <li><a href="../index.html" class="py-2 px-4 block text-lg-sm font-medium hover:bg-gray-200">HOME</a></li>
+            <li><a href="front-body.html" class="py-2 px-4 block text-lg-sm font-medium hover:bg-gray-200">Corpo: Parte Frontal</a></li>
+            <li><a href="back-body.html" class="py-2 px-4 block text-lg-sm font-medium hover:bg-gray-200">Corpo: Parte Posterior</a></li>
+        </ul>
+    </nav>
+
+    <main class="max-w-3xl mx-auto py-6 px-6">
+        <section id="nav-svg" class="flex flex-col justify-center">
+            <h1 class="flex justify-center text-3xl font-bold mb-5 mt-20">Região Posterior</h1>
+            <hr class="w-[90%] mx-auto border-t">
+            <object class="h-screen" id="svg-front" class="svg" data="../assets/back-body.svg" type="image/svg+xml"></object>
+        </section>
+
+        <section id="outer-back" class="mb-11 border-t border-gray-300 pt-4">
+            <h2 class="text-lg-2xl font-semibold flex items-center cursor-pointer toggle-section">
+                Parte Exterior das Costas
+            </h2>
+            <div>
+                <p class="text-lg mb-3">Os músculos da parte exterior das costas, como o latíssimo do dorso, são responsáveis por movimentos de adução, extensão e rotação interna do ombro, essenciais para puxar objetos para baixo e para trás.</p>
+                <img src="assets/exercises/barra-fixa.jpg" alt="Exercício de Barra Fixa" class="w-full mb-4">
+                <p class="mb-5 text-lg"><strong>Exercício:</strong> Barra fixa ativa o latíssimo do dorso, fortalecendo a capacidade de puxar o corpo para cima.</p>
+            </div>
+            <a class="text-xl text-blue-500 hover:underline" href="#nav-svg">topo</a>
+        </section>
+        
+        <section id="inner-back" class="mb-12 border-t border-gray-300 pt-4">
+            <h2 class="text-lg-2xl font-semibold flex items-center cursor-pointer toggle-section">
+                Parte Central das Costas
+            </h2>
+            <div>
+                <p class="text-lg mb-3">Os músculos da parte central das costas, como o trapézio e romboides, estabilizam e movimentam as escápulas, permitindo retração, elevação e depressão dos ombros.</p>
+                <img src="assets/exercises/remada.jpg" alt="Exercício de Remada" class="w-full mb-4">
+                <p class="mb-5 text-lg"><strong>Exercício:</strong> Remadas fortalecem os músculos da parte central das costas, melhorando a postura e a força de puxada.</p>
+            </div>
+            <a class="text-xl text-blue-500 hover:underline" href="#nav-svg">topo</a>
+        </section>
+        
+        <section id="triceps" class="mb-12 border-t border-gray-300 pt-4">
+            <h2 class="text-lg-2xl font-semibold flex items-center cursor-pointer toggle-section">
+                Tríceps
+            </h2>
+            <div>
+                <p class="text-lg mb-3">Os tríceps são responsáveis pela extensão do cotovelo, fundamentais para empurrar objetos e realizar movimentos de arremesso.</p>
+                <img src="assets/exercises/triceps-testa.jpg" alt="Exercício de Tríceps Testa" class="w-full mb-4">
+                <p class="mb-5 text-lg"><strong>Exercício:</strong> O tríceps testa isola o tríceps, promovendo o fortalecimento ao estender o antebraço.</p>
+            </div>
+            <a class="text-xl text-blue-500 hover:underline" href="#nav-svg">topo</a>
+        </section>
+        
+        <section id="glutes" class="mb-12 border-t border-gray-300 pt-4">
+            <h2 class="text-lg font-semibold flex items-center cursor-pointer toggle-section">
+                Glúteos
+            </h2>
+            <div>
+                <p class="text-lg mb-3">Os glúteos, incluindo o glúteo máximo, médio e mínimo, são responsáveis pela extensão, abdução e rotação externa do quadril, essenciais para correr, saltar e manter a postura.</p>
+                <img src="assets/exercises/elevacao-pelvica.jpg" alt="Exercício de Elevação de Quadril" class="w-full mb-4">
+                <p class="mb-5 text-lg"><strong>Exercício:</strong> Elevações de quadril ativam intensamente os glúteos, fortalecendo a extensão do quadril.</p>
+            </div>
+            <a class="text-xl text-blue-500 hover:underline" href="#nav-svg">topo</a>
+        </section>
+        
+        <section id="hamstrings" class="mb-12 border-t border-gray-300 pt-4">
+            <h2 class="text-lg font-semibold flex items-center cursor-pointer toggle-section">
+                Posteriores da Coxa
+            </h2>
+            <div>
+                <p class="text-lg mb-3">Os músculos posteriores da coxa, como o bíceps femoral, realizam a flexão do joelho e a extensão do quadril, importantes para correr e saltar.</p>
+                <img src="assets/exercises/stiff.jpg" alt="Exercício de Stiff" class="w-full mb-4">
+                <p class="mb-5 text-lg"><strong>Exercício:</strong> O exercício stiff foca na extensão do quadril, alongando e fortalecendo os posteriores da coxa.</p>
+            </div>
+            <a class="text-xl text-blue-500 hover:underline" href="#nav-svg">topo</a>
+        </section>
+        
+        <section id="calves" class="mb-12 border-t border-gray-300 pt-4">
+            <h2 class="text-lg font-semibold flex items-center cursor-pointer toggle-section">
+                Panturrilha
+            </h2>
+            <div>
+                <p class="text-lg mb-3">Os músculos da panturrilha, como o gastrocnêmio e sóleo, são responsáveis pela flexão plantar do tornozelo, essenciais para caminhar, correr e saltar.</p>
+                <img src="assets/exercises/panturrilha.jpg" alt="Exercício de Elevação de Panturrilha" class="w-full mb-4">
+                <p class="mb-5 text-lg"><strong>Exercício:</strong> Elevações de panturrilha fortalecem a flexão plantar, melhorando a estabilidade e o desempenho atlético.</p>
+            </div>
+            <a class="text-xl text-blue-500 hover:underline" href="#nav-svg">topo</a>
+        </section>
+    </main>
+    
+    
+    <script src="/js/svg.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
