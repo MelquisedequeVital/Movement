@@ -1,6 +1,9 @@
 # Ignorar node_modules
 node_modules/
 
+#Ignorar build
+dist/
+
 # Ignorar arquivos do sistema operacional
 .DS_Store
 Thumbs.db
