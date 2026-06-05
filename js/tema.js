@@ -1,3 +1,6 @@
+import logoLight from '../assets/logo-light.png';
+import logoDark from '../assets/logo-dark.png';
+
 export function toggleTheme() {
     const body = document.body;
     const isDarkMode = body.classList.toggle('dark');
@@ -8,7 +11,7 @@ export function toggleTheme() {
     // Atualiza a logo
     const logo = document.getElementById('logo');
     if (logo) {
-        logo.src = isDarkMode ? "./assets/logo-dark.png" : "./assets/logo-light.png";
+        logo.src = isDarkMode ? logoDark : logoLight;
     }
 }
 
@@ -20,6 +23,7 @@ export function applySavedTheme() {
     // Atualiza a logo ao carregar
     const logo = document.getElementById('logo');
     if (logo) {
-        logo.src = savedTheme === "dark" ? "/assets/logo-dark.png" : "/assets/logo-light.png";
+        logo.src = savedTheme === "dark" ? logoDark : logoLight;
     }
 }
+
