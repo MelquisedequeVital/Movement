@@ -14,8 +14,8 @@ export default defineConfig(({ command }) => {
       rollupOptions: {
         input: {
           main: resolve(process.cwd(), "src/index.html"),
-          "front-body": resolve(process.cwd(), "src/front-body.html"),
-          "back-body": resolve(process.cwd(), "src/back-body.html"),
+          "front-body": resolve(process.cwd(), "src/workout-details.html"),
+          "back-body": resolve(process.cwd(), "src/workout-list.html"),
         },
       },
     },
