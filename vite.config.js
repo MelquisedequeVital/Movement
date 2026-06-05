@@ -12,9 +12,9 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: resolve(process.cwd(), "index.html"),
-        frontBody: resolve(process.cwd(), "front-body.html"),
-        backBody: resolve(process.cwd(), "back-body.html"),
+        main: resolve(process.cwd(), "src/index.html"),
+        "front-body": resolve(process.cwd(), "src/front-body.html"),
+        "back-body": resolve(process.cwd(), "src/back-body.html"),
       },
     },
   },
