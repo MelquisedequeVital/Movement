@@ -8,7 +8,7 @@ export function toggleTheme() {
     // Atualiza a logo
     const logo = document.getElementById('logo');
     if (logo) {
-        logo.src = isDarkMode ? "/assets/logo-dark.png" : "/assets/logo-light.png";
+        logo.src = isDarkMode ? "./assets/logo-dark.png" : "./assets/logo-light.png";
     }
 }
 

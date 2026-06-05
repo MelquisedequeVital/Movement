@@ -41,8 +41,13 @@ const front = document.getElementById("svg-front")
 
 const back = document.getElementById("svg-back")
 
-addInteractivity(front)
-addInteractivity(back)
+if (front) {
+    addInteractivity(front);
+}
+
+if (back) {
+    addInteractivity(back);
+}
 
 
 
