@@ -8,19 +8,76 @@ function getBodyPart() {
 
 function getWorkoutList() {
     let workoutList = localStorage.getItem(getBodyPart());
-    return workoutList;
+    return workoutList ? JSON.parse(workoutList) : [];
 }
 
 function addWorkout(workout){
     localStorage.setItem(getBodyPart(), workout)
 }
 
+function showModal(){
+    const overlay = document.getElementById("modalOverlay");
+    if (overlay) {
+        overlay.classList.remove("hidden");
+    }
+}
+
+function closeModal(){
+    const overlay = document.getElementById("modalOverlay");
+    if (overlay) {
+        overlay.classList.add("hidden");
+    }
+}
+
+function handleFormSubmit(event) {
+    event.preventDefault();
+
+    const nameInput = document.getElementById("workoutName");
+    const dateInput = document.getElementById("workoutDate");
+    const weightInput = document.getElementById("workoutWeight");
+    const repsInput = document.getElementById("workoutReps");
+    const failureInput = document.getElementById("workoutUntilFailure");
+    const obsInput = document.getElementById("workoutObs");
+
+    if (!nameInput.value || !dateInput.value) {
+        alert("Por favor, preencha pelo menos o nome e a data do treino.");
+        return;
+    }
+
+    const novoTreino = {
+        id: Date.now(),
+        name: nameInput.value,
+        date: dateInput.value,
+        weight: weightInput.value || 0,
+        reps: repsInput.value || 0,
+        observations: obsInput.value || "",
+        untilFailure: failureInput.checked,
+    };
+
+    const listaAtual = getWorkoutList();
+    listaAtual.push(novoTreino);
+    addWorkout(listaAtual);
+
+    event.target.reset();
+    closeModal();
+    renderWorkouts();
+}
+
+
 function renderWorkouts() {
     const treinos = getWorkoutList();
     const grid = document.getElementById("workouts");
 
     if (treinos.length === 0) {
-        grid.innerHTML = "<h1>Nenhum treino registrado<h1>";
+        grid.innerHTML = `<div class="col-span-full flex flex-col items-center justify-center text-center py-16 px-4 bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl mt-6">
+                <div class="bg-gray-100 p-4 rounded-full text-gray-400 mb-4">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5M3.75 12h16.5M4 6h16a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800 mb-1">Nenhum treino registrado</h3>
+                <p class="text-sm text-gray-500 max-w-sm">Você ainda não adicionou rotinas para esta parte do corpo. Clique no botão acima para começar!</p>
+            </div>`;
     } else {
         let cards = "";
         treinos.forEach((treino) => {
@@ -118,5 +175,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (document.getElementById("workout-info")) {
         showDetails();
+    }
+
+    const openModalBtn = document.getElementById("openModalBtn");
+    if (openModalBtn) {
+        openModalBtn.addEventListener("click", showModal);
+    }
+
+    const closeModalBtn = document.getElementById("closeModalBtn");
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener("click", closeModal);
+    }
+
+    const addTaskForm = document.getElementById("addTaskForm");
+    if (addTaskForm) {
+        addTaskForm.addEventListener("submit", handleFormSubmit);
     }
 });
