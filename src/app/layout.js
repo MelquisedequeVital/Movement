@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import "./globals.css";
 
 export const metadata = {
@@ -9,13 +10,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <body>
-        <header>
-          <h1>Movement</h1>
-        </header>
+        <Header/>
         <main>{children}</main>
-        <footer>
-          <p>Rodapé do site</p>
-        </footer>
       </body>
     </html>
   );
