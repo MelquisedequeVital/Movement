@@ -1,3 +1,151 @@
 {
-	"workouts": []
+  "chest": [
+    {
+      "id": "1",
+      "name": "Supino Reto",
+      "date": "2026-06-20",
+      "weight": "80",
+      "reps": "10",
+      "untilFailure": true,
+      "obs": "Foco na cadência de descida"
+    },
+    {
+      "name": "Voador",
+      "date": "2026-06-20",
+      "weight": "100",
+      "reps": "30",
+      "untilFailure": true,
+      "obs": "",
+      "id": "9sLDKM269Kc"
+    },
+    {
+      "name": "Supino Inclinado",
+      "date": "2026-06-27",
+      "weight": "30",
+      "reps": "40",
+      "untilFailure": true,
+      "obs": "",
+      "id": "HM39zi4bg9c"
+    },
+    {
+      "name": "Voador",
+      "date": "2026-06-20",
+      "weight": "30",
+      "reps": "50",
+      "untilFailure": false,
+      "obs": "",
+      "id": "JFE2lZo2sIQ"
+    }
+  ],
+  "abdome": [
+    {
+      "id": "1",
+      "name": "Abdominal Infra na Barra",
+      "date": "2026-06-20",
+      "weight": "0",
+      "reps": "15",
+      "untilFailure": false,
+      "obs": "Manter o abdômen contraído"
+    }
+  ],
+  "biceps": [
+    {
+      "id": "1",
+      "name": "Rosca Direta",
+      "date": "2026-06-20",
+      "weight": "30",
+      "reps": "12",
+      "untilFailure": false,
+      "obs": "Sem roubar com a coluna"
+    }
+  ],
+  "shoulders": [
+    {
+      "id": "1",
+      "name": "Desenvolvimento Halteres",
+      "date": "2026-06-20",
+      "weight": "24",
+      "reps": "10",
+      "untilFailure": true,
+      "obs": "Subir controlando o peso"
+    }
+  ],
+  "front-leg": [
+    {
+      "id": "1",
+      "name": "Agachamento Livre",
+      "date": "2026-06-20",
+      "weight": "100",
+      "reps": "8",
+      "untilFailure": true,
+      "obs": "Amplitude máxima"
+    }
+  ],
+  "glutes": [
+    {
+      "id": "1",
+      "name": "Elevação Pélvica",
+      "date": "2026-06-20",
+      "weight": "120",
+      "reps": "10",
+      "untilFailure": false,
+      "obs": "Pico de contração de 2 segundos no topo"
+    }
+  ],
+  "hamstrings": [
+    {
+      "id": "1",
+      "name": "Stiff com Barra",
+      "date": "2026-06-20",
+      "weight": "70",
+      "reps": "10",
+      "untilFailure": false,
+      "obs": "Sentir bem o alongamento"
+    }
+  ],
+  "outer-back": [
+    {
+      "id": "1",
+      "name": "Puxada Alta Pronada",
+      "date": "2026-06-20",
+      "weight": "65",
+      "reps": "12",
+      "untilFailure": false,
+      "obs": "Expandir bem as dorsais"
+    }
+  ],
+  "inner-back": [
+    {
+      "id": "1",
+      "name": "Remada Curvada",
+      "date": "2026-06-20",
+      "weight": "60",
+      "reps": "10",
+      "untilFailure": true,
+      "obs": "Esmagar as escápulas atrás"
+    }
+  ],
+  "calves": [
+    {
+      "id": "1",
+      "name": "Gêmeos em Pé",
+      "date": "2026-06-20",
+      "weight": "50",
+      "reps": "20",
+      "untilFailure": false,
+      "obs": "Alongamento completo na descida"
+    }
+  ],
+  "triceps": [
+    {
+      "id": "1",
+      "name": "Tríceps Pulley",
+      "date": "2026-06-20",
+      "weight": "45",
+      "reps": "12",
+      "untilFailure": false,
+      "obs": "Manter os cotovelos fixos no tronco"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
