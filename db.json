@@ -35,6 +35,15 @@
       "untilFailure": false,
       "obs": "",
       "id": "JFE2lZo2sIQ"
+    },
+    {
+      "name": "teste",
+      "date": "2026-06-20",
+      "weight": "1",
+      "reps": "1",
+      "untilFailure": true,
+      "obs": "aaaaa",
+      "id": "8ckkMk87Jz0"
     }
   ],
   "abdome": [
