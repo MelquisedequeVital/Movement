@@ -4,9 +4,9 @@ import Button from "@/components/Button";
 import EmptyState from "@/components/EmptyState";
 import WorkoutCard from "@/components/WorkoutCard";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
-export default function WorkoutList() {
+function WorkoutListContent() {
   const searchParams = useSearchParams();
   const bodyPart = searchParams.get("bodyPart");
   const [workouts, setWorkouts] = useState([]);
@@ -77,3 +77,12 @@ export default function WorkoutList() {
     </div>
   );
 }
+
+
+export default function WorkoutList() {
+  return (
+    <Suspense fallback={<div className="max-w-5xl mx-auto p-6 mt-6 text-gray-500">Carregando lista de treinos...</div>}>
+      <WorkoutListContent />
+    </Suspense>
+  );}
+

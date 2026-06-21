@@ -3,8 +3,9 @@
 import FailureBadge from "@/components/FailureBadge";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Suspense } from "react";
 
-export default function WorkoutDetails() {
+function WorkoutDetailsContent() {
   const searchParams = useSearchParams();
   const bodyPart = searchParams.get("bodyPart");
   const workoutId = searchParams.get("id");
@@ -27,7 +28,6 @@ export default function WorkoutDetails() {
             </h1>
             <FailureBadge workout={workout}></FailureBadge>
           </div>
-
           <div className="p-6 md:p-8">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8">
               <div className="flex flex-col">
@@ -76,4 +76,16 @@ export default function WorkoutDetails() {
       )}
     </div>
   );
+}
+
+export default function WorkoutDetails() {
+  <Suspense
+    fallback={
+      <div className="text-center py-12 text-gray-500">
+        Carregando detalhes do treino...
+      </div>
+    }
+  >
+    <WorkoutDetailsContent />
+  </Suspense>;
 }
