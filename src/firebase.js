@@ -18,6 +18,12 @@ const firebaseConfig = {
 
 // Initialize Firebase
 
+console.log("--- VERIFICAÇÃO DE VARIÁVEIS NA VERCEL ---");
+console.log("API Key existe?", !!process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
+console.log("Project ID existe?", !!process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID);
+console.log("Auth Domain existe?", !!process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN);
+console.log("-----------------------------------------");
+
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 
 const db = getFirestore(app);

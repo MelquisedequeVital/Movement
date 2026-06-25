@@ -14,7 +14,8 @@ function WorkoutListContent() {
   const [workouts, setWorkouts] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [workoutToEdit, setWorkoutToEdit] = useState(null);
-  const API_URL = `http://localhost:3001/${bodyPart}`;
+
+  console.log("LOG 1 - bodyPart capturado da URL:", bodyPart);
 
   useEffect(() => {
     async function getWorkouts() {
@@ -29,10 +30,13 @@ function WorkoutListContent() {
           ...doc.data(),
         }));
         setWorkouts(workoutsData);
+        console.log(`LOG 2 - Workouts fetched for ${bodyPart}:`, workoutsData);
       } catch (error) {
         console.error(`Error fetching workouts for ${bodyPart}:`, error);
       }
-    }
+    } 
+
+    
 
     getWorkouts();
   }, [bodyPart]);
@@ -86,6 +90,8 @@ function WorkoutListContent() {
       console.error(`Error updating workout in ${bodyPart}:`, error);
     }
   };
+
+  console.log("LOG 3 - Estado 'workouts' na renderização:", workouts);
 
   return (
     <div className="max-w-5xl mx-auto p-6 mt-6">
