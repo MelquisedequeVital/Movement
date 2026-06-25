@@ -1,59 +1,97 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 
+const createSvgHandlers = (svgElement, textSvg, router) => {
+    const clickHandler = () => {
+        router.push(`/workout-list?bodyPart=${svgElement.id}`);
+    };
+
+    const mouseOverHandler = () => {
+        svgElement.style.fill = "green";
+        svgElement.style.transition = "transform 0.3s ease";
+        svgElement.style.transform = "translate(4px, -4px)";
+        svgElement.style.zIndex = "1";
+        if (textSvg) {
+            textSvg.textContent = svgElement.id;
+        }
+    };
+
+    const mouseOutHandler = () => {
+        svgElement.style.fill = "";
+        svgElement.style.transition = "transform 0.3s ease";
+        svgElement.style.transform = "translate(0px, 0px)";
+        if (textSvg) {
+            textSvg.textContent = "";
+        }
+    };
+
+    return { clickHandler, mouseOverHandler, mouseOutHandler };
+};
+
+const applyInteractivity = (currentObject, router, listenersAttached) => {
+    const svgDoc = currentObject?.contentDocument;
+    if (!svgDoc || currentObject.dataset.interactivityApplied === "true") return;
+
+    const svgElements = svgDoc.querySelectorAll(".hover");
+    const textSvg = svgDoc.getElementById("muscle-name");
+
+    svgElements.forEach((svgElement) => {
+        svgElement.style.cursor = "pointer";
+
+        const { clickHandler, mouseOverHandler, mouseOutHandler } = createSvgHandlers(svgElement, textSvg, router);
+
+        svgElement.addEventListener("click", clickHandler);
+        svgElement.addEventListener("mouseover", mouseOverHandler);
+        svgElement.addEventListener("mouseout", mouseOutHandler);
+
+        listenersAttached.push({
+            element: svgElement,
+            click: clickHandler,
+            mouseover: mouseOverHandler,
+            mouseout: mouseOutHandler
+        });
+    });
+
+    currentObject.dataset.interactivityApplied = "true";
+};
+
+const removeInteractivity = (currentObject, listenersAttached) => {
+    listenersAttached.forEach((item) => {
+        item.element.removeEventListener("click", item.click);
+        item.element.removeEventListener("mouseover", item.mouseover);
+        item.element.removeEventListener("mouseout", item.mouseout);
+    });
+    
+    if (currentObject) {
+        delete currentObject.dataset.interactivityApplied;
+    }
+};
+
 export default function BodyMap({ id, src }) {
     const objectRef = useRef(null);
     const router = useRouter();
 
     useEffect(() => {
-        const currentObject = objectRef.current;
+        const currentObject = objectRef.current; 
+        const listenersAttached = [];
+        let timer;
 
-        const addInteractivity = () => {
-            const svgDoc = currentObject?.contentDocument;
-            if (!svgDoc) return;
-
-            const svgElements = svgDoc.querySelectorAll(".hover");
-            const textSvg = svgDoc.getElementById("muscle-name");
-
-            svgElements.forEach((svgElement) => {
-                svgElement.style.cursor = "pointer";
-
-                svgElement.addEventListener("click", () => {
-                    router.push(`/workout-list?bodyPart=${svgElement.id}`);
-                });
-
-                svgElement.addEventListener("mouseover", () => {
-                    svgElement.style.fill = "green";
-                    svgElement.style.transition = "transform 0.3s ease";
-                    svgElement.style.transform = "translate(4px, -4px)";
-                    svgElement.style.zIndex = "1";
-                    if (textSvg) {
-                        textSvg.textContent = `${svgElement.id}`;
-                    }
-                });
-
-                svgElement.addEventListener("mouseout", () => {
-                    svgElement.style.fill = "";
-                    svgElement.style.transition = "transform 0.3s ease";
-                    svgElement.style.transform = "translate(0px, 0px)";
-                    if (textSvg) {
-                        textSvg.textContent = "";
-                    }
-                });
-            });
-        };
+        const handleLoad = () => applyInteractivity(currentObject, router, listenersAttached);
 
         if (currentObject && currentObject.contentDocument) {
-            addInteractivity();
+            timer = setTimeout(handleLoad, 50);
+            currentObject.addEventListener("load", handleLoad);
         } else {
-            currentObject?.addEventListener("load", addInteractivity);
+            currentObject?.addEventListener("load", handleLoad);
         }
 
         return () => {
-            currentObject?.removeEventListener("load", addInteractivity);
+            if (timer) clearTimeout(timer);
+            currentObject?.removeEventListener("load", handleLoad);
+            removeInteractivity(currentObject, listenersAttached);
         };
-    }, [router]);
-
+    }, [router, src]);
+    
     return (
         <object
             ref={objectRef}
