@@ -1,62 +1,6 @@
 {
-  "chest": [
-    {
-      "id": "1",
-      "name": "Supino Reto",
-      "date": "2026-06-20",
-      "weight": "80",
-      "reps": "10",
-      "untilFailure": true,
-      "obs": "Foco na cadência de descida"
-    },
-    {
-      "name": "Voador",
-      "date": "2026-06-20",
-      "weight": "100",
-      "reps": "30",
-      "untilFailure": true,
-      "obs": "",
-      "id": "9sLDKM269Kc"
-    },
-    {
-      "name": "Supino Inclinado",
-      "date": "2026-06-27",
-      "weight": "30",
-      "reps": "40",
-      "untilFailure": true,
-      "obs": "",
-      "id": "HM39zi4bg9c"
-    },
-    {
-      "name": "Voador",
-      "date": "2026-06-20",
-      "weight": "30",
-      "reps": "50",
-      "untilFailure": false,
-      "obs": "",
-      "id": "JFE2lZo2sIQ"
-    },
-    {
-      "name": "teste",
-      "date": "2026-06-20",
-      "weight": "1",
-      "reps": "1",
-      "untilFailure": true,
-      "obs": "aaaaa",
-      "id": "8ckkMk87Jz0"
-    }
-  ],
-  "abdome": [
-    {
-      "id": "1",
-      "name": "Abdominal Infra na Barra",
-      "date": "2026-06-20",
-      "weight": "0",
-      "reps": "15",
-      "untilFailure": false,
-      "obs": "Manter o abdômen contraído"
-    }
-  ],
+  "chest": [],
+  "abdome": [],
   "biceps": [
     {
       "id": "1",
@@ -88,17 +32,26 @@
       "reps": "8",
       "untilFailure": true,
       "obs": "Amplitude máxima"
+    },
+    {
+      "name": "Puxada Alta ",
+      "date": "2026-06-26",
+      "weight": "2",
+      "reps": "22",
+      "obs": "",
+      "untilFailure": false,
+      "id": "muAfM-zLPNI"
     }
   ],
   "glutes": [
     {
-      "id": "1",
-      "name": "Elevação Pélvica",
-      "date": "2026-06-20",
-      "weight": "120",
-      "reps": "10",
+      "name": "Puxada Alta Pronada",
+      "date": "2026-06-26",
+      "weight": "3",
+      "reps": "4",
       "untilFailure": false,
-      "obs": "Pico de contração de 2 segundos no topo"
+      "obs": "",
+      "id": "1"
     }
   ],
   "hamstrings": [
@@ -115,10 +68,10 @@
   "outer-back": [
     {
       "id": "1",
-      "name": "Puxada Alta Pronada",
+      "name": "Puxada Alta ",
       "date": "2026-06-20",
-      "weight": "65",
-      "reps": "12",
+      "weight": 65,
+      "reps": 12,
       "untilFailure": false,
       "obs": "Expandir bem as dorsais"
     }

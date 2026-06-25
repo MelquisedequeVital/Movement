@@ -10,7 +10,8 @@ function WorkoutListContent() {
   const searchParams = useSearchParams();
   const bodyPart = searchParams.get("bodyPart");
   const [workouts, setWorkouts] = useState([]);
-  const [hidden, setHidden] = useState("hidden");
+  const [isOpen, setIsOpen] = useState(false);
+  const [workoutToEdit, setWorkoutToEdit] = useState(null);
   const API_URL = `http://localhost:3001/${bodyPart}`;
 
   useEffect(() => {
@@ -28,7 +29,17 @@ function WorkoutListContent() {
   }, [API_URL]);
 
   const toggleModal = () => {
-    setHidden((prev) => (prev === "hidden" ? "" : "hidden"));
+    setIsOpen((prev) => !prev);
+  };
+
+  const onCreateWorkout = () => {
+    setWorkoutToEdit(null);
+    toggleModal();
+  };
+
+  const onEditWorkout = (workout) => {
+    setWorkoutToEdit(workout);
+    toggleModal();
   };
 
   const addWorkout = (data) => {
@@ -50,7 +61,21 @@ function WorkoutListContent() {
     })
     .then(() => setWorkouts((old) => old.filter((workout) => workout.id !== id)))
     .catch((err) => console.error(err));
-  }
+  };
+
+  const updateWorkout = (updatedWorkout, id) => {
+    fetch(`${API_URL}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedWorkout),
+    })
+      .then((res) => res.json())
+      .then((editedWorkout) => setWorkouts((old) => old.map((workout) => (workout.id === editedWorkout.id ? editedWorkout : workout))))
+      .then(() => setWorkoutToEdit(null))
+      .catch((err) => console.error(err));
+  };
 
   return (
     <div className="max-w-5xl mx-auto p-6 mt-6">
@@ -58,7 +83,7 @@ function WorkoutListContent() {
         <h1 className="text-2xl font-bold text-gray-900 capitalize">
           {bodyPart}
         </h1>
-        <Button text="Adicionar Treino" btnAction={toggleModal} />
+        <Button text="Adicionar Treino" btnAction={onCreateWorkout} />
       </div>
 
       {workouts.length === 0 ? (
@@ -71,26 +96,28 @@ function WorkoutListContent() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {workouts.map((workout) => (
-            <WorkoutCard removeWorkout={removeWorkout} key={workout.id} treino={workout} bodyPart={bodyPart} />
+            <WorkoutCard removeWorkout={removeWorkout} editWorkout={onEditWorkout} key={workout.id} treino={workout} bodyPart={bodyPart} />
           ))}
         </div>
       )}
 
-      <AddWorkoutModal
-        modalHidden={hidden}
-        closeModal={toggleModal}
-        addWorkout={addWorkout}
-        text="Salvar Treino"
-      />
+      {isOpen && (
+        <AddWorkoutModal
+          closeModal={toggleModal}
+          addWorkout={addWorkout}
+          updateWorkout={updateWorkout}
+          workoutToEdit={workoutToEdit}
+          text={workoutToEdit ? "Atualizar Treino" : "Salvar Treino"}
+        />
+      )}
     </div>
   );
 }
-
 
 export default function WorkoutList() {
   return (
     <Suspense fallback={<div className="max-w-5xl mx-auto p-6 mt-6 text-gray-500">Carregando lista de treinos...</div>}>
       <WorkoutListContent />
     </Suspense>
-  );}
-
+  );
+}

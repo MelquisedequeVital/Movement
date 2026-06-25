@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 
-export default function WorkoutCard({ treino, bodyPart, removeWorkout }) {
+export default function WorkoutCard({ treino, bodyPart, removeWorkout, editWorkout }) {
     const router = useRouter();
 
     const handleDelete = (e) => {
@@ -10,16 +10,44 @@ export default function WorkoutCard({ treino, bodyPart, removeWorkout }) {
         }
     };
 
+    const handleEdit = (e) => {
+        e.stopPropagation();
+        if (editWorkout) {
+            editWorkout(treino);
+        }
+    };
+
     return (
-        <div 
-            onClick={() => router.push(`/workout-details?id=${treino.id}&bodyPart=${bodyPart}`)} 
+        <div
+            onClick={() => router.push(`/workout-details?id=${treino.id}&bodyPart=${bodyPart}`)}
             className="bg-white border border-gray-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col gap-2 hover:cursor-pointer"
         >
             <div className="flex justify-between items-start gap-4">
                 <h2 className="text-xl font-semibold text-gray-800 capitalize flex-1">
                     {treino.name}
                 </h2>
-                
+
+                <button
+                    onClick={handleEdit} // Altere para a sua função de edição
+                    className="text-gray-400 hover:text-blue-600 transition-colors duration-200 p-1 rounded-md hover:bg-gray-100"
+                    title="Editar treino"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-5 h-5"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
+                        />
+                    </svg>
+                </button>
+
                 <button
                     onClick={handleDelete}
                     className="text-gray-400 hover:text-red-500 transition-colors duration-200 p-1 rounded-md hover:bg-gray-100 shrink-0"

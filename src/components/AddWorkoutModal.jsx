@@ -1,21 +1,31 @@
 import { useForm } from "react-hook-form";
 import Button from "./Button";
 
-export default function AddWorkoutModal({ text, modalHidden, closeModal, addWorkout}) {
+export default function AddWorkoutModal({ text, closeModal, addWorkout, workoutToEdit, updateWorkout }) {
 
-    const { register, handleSubmit, formState: { errors }, reset } = useForm();
-
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        defaultValues: {
+            name: workoutToEdit?.name || "",
+            date: workoutToEdit?.date || "",
+            weight: workoutToEdit?.weight || "",
+            reps: workoutToEdit?.reps || "",
+            obs: workoutToEdit?.obs || "",
+            untilFailure: workoutToEdit?.untilFailure || false
+        }
+    });
+    
     const onSubmit = (dados) => {
-        addWorkout(dados)
-        reset();
-        closeModal()
-    }
+        workoutToEdit !== null ? updateWorkout(dados, workoutToEdit.id) : addWorkout(dados);
+        closeModal();
+    };
 
     return (
-        <div id="modalOverlay" className={`${modalHidden} fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4`}>
+        <div id="modalOverlay" className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <form id="addTaskForm" onSubmit={handleSubmit(onSubmit)} className="w-full max-w-md bg-white border-2 border-black rounded-2xl p-5 grid grid-cols-2 gap-4">
                 <div className="col-span-2 flex justify-between items-center border-b pb-2 mb-2">
-                    <h2 className="text-lg font-bold text-gray-900">Novo Treino</h2>
+                    <h2 className="text-lg font-bold text-gray-900">
+                        {workoutToEdit ? "Editar Treino" : "Novo Treino"}
+                    </h2>
                     <button onClick={closeModal} type="button" id="closeModalBtn" className="text-gray-500 hover:text-black font-bold text-xl">✕</button>
                 </div>
 
