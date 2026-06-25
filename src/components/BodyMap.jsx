@@ -30,7 +30,7 @@ const createSvgHandlers = (svgElement, textSvg, router) => {
 
 const applyInteractivity = (currentObject, router, listenersAttached) => {
     const svgDoc = currentObject?.contentDocument;
-    if (!svgDoc || currentObject.dataset.interactivityApplied === "true") return;
+    if (!svgDoc) return;
 
     const svgElements = svgDoc.querySelectorAll(".hover");
     const textSvg = svgDoc.getElementById("muscle-name");
@@ -51,20 +51,16 @@ const applyInteractivity = (currentObject, router, listenersAttached) => {
             mouseout: mouseOutHandler
         });
     });
-
-    currentObject.dataset.interactivityApplied = "true";
 };
 
-const removeInteractivity = (currentObject, listenersAttached) => {
+const removeInteractivity = (listenersAttached) => {
     listenersAttached.forEach((item) => {
-        item.element.removeEventListener("click", item.click);
-        item.element.removeEventListener("mouseover", item.mouseover);
-        item.element.removeEventListener("mouseout", item.mouseout);
+        if (item.element) {
+            item.element.removeEventListener("click", item.click);
+            item.element.removeEventListener("mouseover", item.mouseover);
+            item.element.removeEventListener("mouseout", item.mouseout);
+        }
     });
-    
-    if (currentObject) {
-        delete currentObject.dataset.interactivityApplied;
-    }
 };
 
 export default function BodyMap({ id, src }) {
@@ -73,22 +69,27 @@ export default function BodyMap({ id, src }) {
 
     useEffect(() => {
         const currentObject = objectRef.current; 
-        const listenersAttached = [];
-        let timer;
+        let listenersAttached = [];
 
-        const handleLoad = () => applyInteractivity(currentObject, router, listenersAttached);
+        const handleLoad = () => {
+            removeInteractivity(listenersAttached);
+            listenersAttached = [];
+            applyInteractivity(currentObject, router, listenersAttached);
+        };
 
-        if (currentObject && currentObject.contentDocument) {
-            timer = setTimeout(handleLoad, 50);
+        if (currentObject) {
             currentObject.addEventListener("load", handleLoad);
-        } else {
-            currentObject?.addEventListener("load", handleLoad);
+            
+            if (currentObject.contentDocument && currentObject.contentDocument.readyState === "complete") {
+                handleLoad();
+            }
         }
 
         return () => {
-            if (timer) clearTimeout(timer);
-            currentObject?.removeEventListener("load", handleLoad);
-            removeInteractivity(currentObject, listenersAttached);
+            if (currentObject) {
+                currentObject.removeEventListener("load", handleLoad);
+            }
+            removeInteractivity(listenersAttached);
         };
     }, [router, src]);
     
