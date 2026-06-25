@@ -5,6 +5,8 @@ import EmptyState from "@/components/EmptyState";
 import WorkoutCard from "@/components/WorkoutCard";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
+import { collection, addDoc, getDocs, deleteDoc, doc, updateDoc, query, where } from "firebase/firestore";
+import { db } from "@/firebase";
 
 function WorkoutListContent() {
   const searchParams = useSearchParams();
@@ -15,18 +17,25 @@ function WorkoutListContent() {
   const API_URL = `http://localhost:3001/${bodyPart}`;
 
   useEffect(() => {
-    const getWorkout = () => {
-      fetch(API_URL)
-        .then((res) => res.json())
-        .then((dados) => setWorkouts(Array.isArray(dados) ? dados : []))
-        .catch((err) => {
-          console.error(err);
-          setWorkouts([]);
-        });
-    };
+    async function getWorkouts() {
+      try {
+        const q = query(
+          collection(db, "workouts"),
+          where("bodyPart", "==", bodyPart),
+        );
+        const querySnapshot = await getDocs(q);
+        const workoutsData = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setWorkouts(workoutsData);
+      } catch (error) {
+        console.error(`Error fetching workouts for ${bodyPart}:`, error);
+      }
+    }
 
-    getWorkout();
-  }, [API_URL]);
+    getWorkouts();
+  }, [bodyPart]);
 
   const toggleModal = () => {
     setIsOpen((prev) => !prev);
@@ -42,39 +51,40 @@ function WorkoutListContent() {
     toggleModal();
   };
 
-  const addWorkout = (data) => {
-    fetch(API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((newWorkout) => setWorkouts((old) => [...old, newWorkout]))
-      .catch((err) => console.error(err));
+  const addWorkout = async (data) => {
+    try {
+      const docRef = await addDoc(collection(db, "workouts"), {
+        ...data,
+        bodyPart: bodyPart,
+      });
+      setWorkouts((prev) => [...prev, { id: docRef.id, ...data }]);
+    } catch (error) {
+      console.error(`Error adding workout to ${bodyPart}:`, error);
+    }
   };
 
-  const removeWorkout = (id) =>  {
-    fetch(`${API_URL}/${id}`, {
-      method: "DELETE"
-    })
-    .then(() => setWorkouts((old) => old.filter((workout) => workout.id !== id)))
-    .catch((err) => console.error(err));
+  const removeWorkout = async (id) => {
+    try {
+      const docRef = doc(db, "workouts", id);
+      await deleteDoc(docRef);
+      setWorkouts((prev) => prev.filter((workout) => workout.id !== id));
+    } catch (error) {
+      console.error(`Error removing workout from ${bodyPart}:`, error);
+    }
   };
 
-  const updateWorkout = (updatedWorkout, id) => {
-    fetch(`${API_URL}/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedWorkout),
-    })
-      .then((res) => res.json())
-      .then((editedWorkout) => setWorkouts((old) => old.map((workout) => (workout.id === editedWorkout.id ? editedWorkout : workout))))
-      .then(() => setWorkoutToEdit(null))
-      .catch((err) => console.error(err));
+  const updateWorkout = async (updatedWorkout, id) => {
+    try{
+      const docRef = doc(db, "workouts", id);
+      await updateDoc(docRef, updatedWorkout);
+      setWorkouts((prev) =>
+        prev.map((workout) =>
+          workout.id === id ? { ...workout, ...updatedWorkout } : workout
+        )
+      );
+    } catch (error) {
+      console.error(`Error updating workout in ${bodyPart}:`, error);
+    }
   };
 
   return (
@@ -96,7 +106,13 @@ function WorkoutListContent() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {workouts.map((workout) => (
-            <WorkoutCard removeWorkout={removeWorkout} editWorkout={onEditWorkout} key={workout.id} treino={workout} bodyPart={bodyPart} />
+            <WorkoutCard
+              removeWorkout={removeWorkout}
+              editWorkout={onEditWorkout}
+              key={workout.id}
+              treino={workout}
+              bodyPart={bodyPart}
+            />
           ))}
         </div>
       )}
@@ -116,7 +132,13 @@ function WorkoutListContent() {
 
 export default function WorkoutList() {
   return (
-    <Suspense fallback={<div className="max-w-5xl mx-auto p-6 mt-6 text-gray-500">Carregando lista de treinos...</div>}>
+    <Suspense
+      fallback={
+        <div className="max-w-5xl mx-auto p-6 mt-6 text-gray-500">
+          Carregando lista de treinos...
+        </div>
+      }
+    >
       <WorkoutListContent />
     </Suspense>
   );

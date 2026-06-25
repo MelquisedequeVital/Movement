@@ -4,6 +4,8 @@ import FailureBadge from "@/components/FailureBadge";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Suspense } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/firebase";
 
 function WorkoutDetailsContent() {
   const searchParams = useSearchParams();
@@ -12,11 +14,19 @@ function WorkoutDetailsContent() {
   const [workout, setWorkout] = useState();
 
   useEffect(() => {
-    fetch(`http://localhost:3001/${bodyPart}/${workoutId}`)
-      .then((res) => res.json())
-      .then((workout) => setWorkout(workout))
-      .catch((err) => console.error(err));
-  }, [bodyPart, workoutId]);
+    const getWorkoutById = async () => {
+      try {
+        const docRef = doc(db, "workouts", workoutId);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setWorkout({ id: docSnap.id, ...docSnap.data() });
+        }
+      } catch (error) {
+        console.error(`Error fetching workout details for ${bodyPart}`, error);
+      }
+    };
+    getWorkoutById();
+  }, [workoutId, bodyPart]);
 
   return (
     <div className="max-w-3xl mx-auto py-8 px-6">

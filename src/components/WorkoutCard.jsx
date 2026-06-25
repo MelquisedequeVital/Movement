@@ -19,7 +19,7 @@ export default function WorkoutCard({ treino, bodyPart, removeWorkout, editWorko
 
     return (
         <div
-            onClick={() => router.push(`/workout-details?id=${treino.id}&bodyPart=${bodyPart}`)}
+            onClick={() => router.push(`/workout-details?id=${treino.id}`)}
             className="bg-white border border-gray-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col gap-2 hover:cursor-pointer"
         >
             <div className="flex justify-between items-start gap-4">
