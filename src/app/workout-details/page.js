@@ -79,13 +79,15 @@ function WorkoutDetailsContent() {
 }
 
 export default function WorkoutDetails() {
-  <Suspense
-    fallback={
-      <div className="text-center py-12 text-gray-500">
-        Carregando detalhes do treino...
-      </div>
-    }
-  >
-    <WorkoutDetailsContent />
-  </Suspense>;
+  return (
+    <Suspense
+      fallback={
+        <div className="text-center py-12 text-gray-500">
+          Carregando detalhes do treino...
+        </div>
+      }
+    >
+      <WorkoutDetailsContent />
+    </Suspense>
+  );
 }
